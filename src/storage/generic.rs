@@ -100,6 +100,8 @@ pub trait GenericWriteStorage {
     /// Remove the component for an `Entity`
     fn remove(&mut self, entity: Entity);
 
+    fn clear(&mut self);
+
     /// Private function to seal the trait
     fn _private() -> Seal;
 }
@@ -133,6 +135,10 @@ where
 
     fn remove(&mut self, entity: Entity) {
         WriteStorage::remove(self, entity);
+    }
+
+    fn clear(&mut self) {
+        WriteStorage::clear(self);
     }
 
     fn _private() -> Seal {
@@ -169,6 +175,10 @@ where
 
     fn remove(&mut self, entity: Entity) {
         WriteStorage::remove(*self, entity);
+    }
+
+    fn clear(&mut self) {
+        WriteStorage::clear(*self);
     }
 
     fn _private() -> Seal {
